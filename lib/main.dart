@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
-
+/*
+qwertyuikol
+*/
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
