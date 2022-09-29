@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
-/*
-qwertyuikol
-*/
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -69,7 +67,7 @@ class MyHomePage extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/img/download.jpg"),
+                    image: AssetImage("assets/img/gcek.jpg"),
                     fit: BoxFit.cover),
               ),
               // child: // Foreground widget here
@@ -129,7 +127,8 @@ class MyHomePage extends StatelessWidget {
                             child: Column(
                               children: const [
                                 Icon(
-                                  Icons.account_box_rounded,
+                                  // Icons.account_box_rounded,
+                                  Icons.compare_arrows_sharp, // change
                                   size: 60,
                                 ),
                                 Text(
@@ -160,7 +159,8 @@ class MyHomePage extends StatelessWidget {
                             child: Column(
                               children: const [
                                 Icon(
-                                  Icons.account_box_rounded,
+                                  // Icons.account_box_rounded,
+                                  Icons.room_preferences_outlined, //change
                                   size: 60,
                                 ),
                                 Text(
@@ -181,7 +181,8 @@ class MyHomePage extends StatelessWidget {
                             child: Column(
                               children: const [
                                 Icon(
-                                  Icons.list_outlined,
+                                  // Icons.list_outlined,
+                                  Icons.library_books_outlined, //change
                                   size: 60,
                                 ),
                                 Text(
