@@ -43,20 +43,20 @@ class MyHomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.business,
+              Icons.notification_add_outlined, //change
               size: 40,
             ),
             label: 'Notices',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.school,
+              Icons.account_circle_rounded, //change
               size: 40,
             ),
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 188, 8, 8),
       ),
       body: Column(
         children: [
@@ -92,109 +92,129 @@ class MyHomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               elevation: 30,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 30),
                 child: Container(
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 100,
-                            width: 130,
-                            child: Column(
-                              children: const [
-                                Icon(
-                                  Icons.account_box_rounded,
-                                  size: 60,
-                                ),
-                                Text(
-                                  "Details",
-                                  style: TextStyle(
-                                    fontSize: 18,
+                      IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 80,
+                              width: 130,
+                              child: Column(
+                                children: const [
+                                  Icon(
+                                    Icons.account_box_rounded,
+                                    size: 40,
+                                    color: Color.fromARGB(255, 188, 8, 8),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          VerticalDivider(
-                            color: Colors.black,
-                            thickness: 2,
-                          ),
-                          Container(
-                            height: 100,
-                            width: 130,
-                            child: Column(
-                              children: const [
-                                Icon(
-                                  // Icons.account_box_rounded,
-                                  Icons.compare_arrows_sharp, // change
-                                  size: 60,
-                                ),
-                                Text(
-                                  "Rooms",
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "DETAILS",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                            VerticalDivider(
+                              endIndent: 17,
+                              width: 30,
+                              color: Color.fromARGB(92, 0, 0, 0),
+                              thickness: 2,
+                            ),
+                            Container(
+                              height: 80,
+                              width: 130,
+                              child: Column(
+                                children: const [
+                                  Icon(
+                                    // Icons.account_box_rounded,
+                                    Icons.repeat, // change
+                                    size: 40,
+                                    color: Color.fromARGB(255, 188, 8, 8),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "ROOMS",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            bottom: 30, left: 30, right: 30),
+                            bottom: 23, left: 30, right: 30),
                         child: Divider(
-                          color: Color.fromARGB(221, 55, 54, 54),
-                          thickness: 3,
+                          color: Color.fromARGB(92, 0, 0, 0),
+                          thickness: 2,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 100,
-                            width: 130,
-                            child: Column(
-                              children: const [
-                                Icon(
-                                  // Icons.account_box_rounded,
-                                  Icons.room_preferences_outlined, //change
-                                  size: 60,
+                      IntrinsicHeight(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 130,
+                                child: Column(
+                                  children: const [
+                                    Icon(
+                                      // Icons.account_box_rounded,
+                                      Icons.add_home_work_outlined, //change
+                                      size: 40,
+                                      color: Color.fromARGB(255, 188, 8, 8),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "WING ALLOT",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Wing Allot",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
+                              ),
+                                VerticalDivider(
+                                  endIndent: 17,
+                                  width: 30,
+                                  color: Color.fromARGB(92, 0, 0, 0),
+                                  thickness: 2,
                                 ),
-                              ],
-                            ),
+                              Container(
+                                height: 80,
+                                width: 130,
+                                child: Column(
+                                  children: const [
+                                    Icon(
+                                      // Icons.list_outlined,
+                                      Icons.library_books_outlined, //change
+                                      size: 40,
+                                      color: Color.fromARGB(255, 188, 8, 8),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "MERIT LIST",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: 35,
-                          ),
-                          Container(
-                            height: 100,
-                            width: 130,
-                            child: Column(
-                              children: const [
-                                Icon(
-                                  // Icons.list_outlined,
-                                  Icons.library_books_outlined, //change
-                                  size: 60,
-                                ),
-                                Text(
-                                  "Merit List",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
