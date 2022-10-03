@@ -28,10 +28,10 @@ class _UserFormState extends State<UserForm> {
           child: Column(
             children: [
               Form(
-                child: Material(
+                child: Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 46,
                         child: TextFormField(
                           controller: _phoneNo,
