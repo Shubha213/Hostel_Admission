@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hostel_app/screens/user_form.dart';
 import 'package:hostel_app/screens/user_room.dart';
 
-// import 'Rooms_Screen.dart';
-// import 'Wing_Allot.dart';
-// import 'details_screen.dart';
-
 class Userscreen extends StatelessWidget {
   const Userscreen({Key? key}) : super(key: key);
 
@@ -97,8 +93,12 @@ class Userscreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>user_form_screen(),),);
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => UserForm(),
+                                  ),
+                                );
                               },
                               child: Container(
                                 height: 80,
@@ -121,7 +121,7 @@ class Userscreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            VerticalDivider(
+                            const VerticalDivider(
                               endIndent: 17,
                               width: 30,
                               color: Color.fromARGB(92, 0, 0, 0),
@@ -129,7 +129,11 @@ class Userscreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => user_room_screen(),),);
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => user_room_screen(),
+                                  ),
+                                );
                               },
                               child: Container(
                                 height: 80,
@@ -155,80 +159,6 @@ class Userscreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(
-                      //       bottom: 23, left: 30, right: 30),
-                      //   child: Divider(
-                      //     color: Color.fromARGB(92, 0, 0, 0),
-                      //     thickness: 2,
-                      //   ),
-                      // ),
-                      // IntrinsicHeight(
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(bottom: 20),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         GestureDetector(
-                      //           onTap: () {
-                      //           Navigator.of(context).push(MaterialPageRoute(builder: (context) => WingAllot(),),);
-                      //         },
-                      //           child: Container(
-                      //             height: 80,
-                      //             width: 130,
-                      //             child: Column(
-                      //               children: const [
-                      //                 Icon(
-                      //                   Icons.add_home_work_outlined,
-                      //                   size: 40,
-                      //                   color: Color.fromARGB(255, 188, 8, 8),
-                      //                 ),
-                      //                 SizedBox(height: 5),
-                      //                 Text(
-                      //                   "WING ALLOT",
-                      //                   style: TextStyle(
-                      //                     fontSize: 16,
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //           const VerticalDivider(
-                      //             endIndent: 17,
-                      //             width: 30,
-                      //             color: Color.fromARGB(92, 0, 0, 0),
-                      //             thickness: 2,
-                      //           ),
-                      //         GestureDetector(
-                      //             onTap: () {
-                      //           Navigator.of(context).push(MaterialPageRoute(builder: (context) => RoomScreen(),),);
-                      //         },
-                      //           child: Container(
-                      //             height: 80,
-                      //             width: 130,
-                      //             child: Column(
-                      //               children: const [
-                      //                 Icon(
-                      //                   Icons.library_books_outlined,
-                      //                   size: 40,
-                      //                   color: Color.fromARGB(255, 188, 8, 8),
-                      //                 ),
-                      //                 SizedBox(height: 5),
-                      //                 Text(
-                      //                   "MERIT LIST",
-                      //                   style: TextStyle(
-                      //                     fontSize: 16,
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
