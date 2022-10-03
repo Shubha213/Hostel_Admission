@@ -35,9 +35,15 @@ class DetailScreenState extends State<DetailScreen> {
 
   var gn = [
     'GENDER',
+<<<<<<< HEAD
     'MALE',
     'FEMALE',
     'Others',
+=======
+      'MALE',
+      'FEMALE',
+      'Others',
+>>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
   ];
 
   @override
@@ -100,12 +106,20 @@ class DetailScreenState extends State<DetailScreen> {
                     width: 30,
                   ),
                   Column(
+<<<<<<< HEAD
                     children: [
+=======
+                    children:  [
+>>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                       // Text(
                       //   'DropDown',
                       //   style: TextStyle(fontSize: 18),
                       // ),
+<<<<<<< HEAD
                       DropdownButton(
+=======
+                                            DropdownButton(
+>>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                         value: dropdownvalue2,
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: branch.map((String items) {
@@ -136,12 +150,20 @@ class DetailScreenState extends State<DetailScreen> {
                     width: 30,
                   ),
                   Column(
+<<<<<<< HEAD
                     children: [
+=======
+                    children:  [
+>>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                       // Text(
                       //   'DropDown',
                       //   style: TextStyle(fontSize: 18),
                       // ),
+<<<<<<< HEAD
                       DropdownButton(
+=======
+                       DropdownButton(
+>>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                         value: dropdownvalue3,
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: gn.map((String items) {
