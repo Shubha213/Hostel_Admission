@@ -244,7 +244,12 @@ class _UserFormState extends State<UserForm> {
                 SizedBox(height: 20),
                 Row(
                   children: [
-                    _courseSelect(),
+                    Column(
+                      children: [
+                        _courseSelect(),
+                      ],
+                    ),
+                    SizedBox(width: 10),
                   ],
                 ),
                 SizedBox(height: 100),

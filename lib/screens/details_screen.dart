@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:hostel_app/screens/admin_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -14,36 +15,27 @@ class DetailScreenState extends State<DetailScreen> {
   String dropdownvalue2 = 'BRANCH';
   String dropdownvalue3 = 'GENDER';
 
-  // List of items in our dropdown menu
   var year = [
     'YEAR',
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+    'FY',
+    'SY',
+    'TY',
+    'B.Tech',
   ];
 
   var branch = [
     'BRANCH',
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+    'Civil',
+    'Mechanical',
+    'Electrical',
+    'IT',
+    'ENTC',
   ];
 
   var gn = [
     'GENDER',
-<<<<<<< HEAD
     'MALE',
     'FEMALE',
-    'Others',
-=======
-      'MALE',
-      'FEMALE',
-      'Others',
->>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
   ];
 
   @override
@@ -56,7 +48,7 @@ class DetailScreenState extends State<DetailScreen> {
         body: Padding(
           padding: const EdgeInsets.only(top: 40, left: 40),
           child: Container(
-            height: 150,
+            height: 250,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -64,7 +56,7 @@ class DetailScreenState extends State<DetailScreen> {
                   Column(
                     children: const [
                       Text(
-                        'SELECT YEAR  :-  ',
+                        'SELECT YEAR  -  ',
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -74,21 +66,33 @@ class DetailScreenState extends State<DetailScreen> {
                   ),
                   Column(
                     children: [
-                      // Text('DropDown',style: TextStyle(fontSize: 18),),
-                      DropdownButton(
-                        value: dropdownvalue1,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: year.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue1 = newValue!;
-                          });
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30),
+                        child: DropdownButton(
+                          value: dropdownvalue1,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: year.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          underline: Container(
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1.0, style: BorderStyle.solid),
+                                // borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue1 = newValue!;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   )
@@ -97,7 +101,7 @@ class DetailScreenState extends State<DetailScreen> {
                   Column(
                     children: const [
                       Text(
-                        'SELECT BRANCH  :-  ',
+                        'SELECT BRANCH  -  ',
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -106,20 +110,8 @@ class DetailScreenState extends State<DetailScreen> {
                     width: 30,
                   ),
                   Column(
-<<<<<<< HEAD
                     children: [
-=======
-                    children:  [
->>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
-                      // Text(
-                      //   'DropDown',
-                      //   style: TextStyle(fontSize: 18),
-                      // ),
-<<<<<<< HEAD
                       DropdownButton(
-=======
-                                            DropdownButton(
->>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                         value: dropdownvalue2,
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: branch.map((String items) {
@@ -141,7 +133,7 @@ class DetailScreenState extends State<DetailScreen> {
                   Column(
                     children: const [
                       Text(
-                        'SELECT YEAR  :-  ',
+                        'SELECT GENDER  -  ',
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -150,20 +142,8 @@ class DetailScreenState extends State<DetailScreen> {
                     width: 30,
                   ),
                   Column(
-<<<<<<< HEAD
                     children: [
-=======
-                    children:  [
->>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
-                      // Text(
-                      //   'DropDown',
-                      //   style: TextStyle(fontSize: 18),
-                      // ),
-<<<<<<< HEAD
                       DropdownButton(
-=======
-                       DropdownButton(
->>>>>>> 9254a54f43b108f80aa4511e2cfc899ead21b5fb
                         value: dropdownvalue3,
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: gn.map((String items) {
@@ -181,6 +161,32 @@ class DetailScreenState extends State<DetailScreen> {
                     ],
                   )
                 ]),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50),
+                          child: Container(
+                            margin: EdgeInsets.all(25),
+                            child: FlatButton(
+                              child: Text(
+                                'Apply Changes',
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                              color: Color(0xFF90294A),
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AdminScreen()));
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

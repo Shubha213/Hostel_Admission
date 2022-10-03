@@ -13,10 +13,11 @@ class user_room_screenState extends State<user_room_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xFF90294A),
-          title: const Text('Room Details'),),
+        title: const Text('Room Details'),
+      ),
     );
   }
 }
