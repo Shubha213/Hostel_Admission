@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostel_app/screens/Rooms_Screen.dart';
-import 'package:hostel_app/screens/Wing_Allot.dart';
-import 'package:hostel_app/screens/details_screen.dart';
+import 'package:sk_m/screens/Rooms_Screen.dart';
+import 'package:sk_m/screens/Wing_Allot.dart';
+import 'package:sk_m/screens/details_screen.dart';
 
 class AdminScreen extends StatelessWidget {
   const AdminScreen({Key? key}) : super(key: key);
@@ -89,8 +89,12 @@ class AdminScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailScreen(),),);
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailScreen(),
+                                  ),
+                                );
                               },
                               child: Container(
                                 height: 80,
@@ -121,7 +125,11 @@ class AdminScreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RoomScreen(),),);
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => RoomScreen(),
+                                  ),
+                                );
                               },
                               child: Container(
                                 height: 80,
@@ -164,8 +172,12 @@ class AdminScreen extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => WingAllot(),),);
-                              },
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => WingAllot(),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   height: 80,
                                   width: 130,
@@ -188,16 +200,20 @@ class AdminScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                                const VerticalDivider(
-                                  endIndent: 17,
-                                  width: 30,
-                                  color: Color.fromARGB(92, 0, 0, 0),
-                                  thickness: 2,
-                                ),
+                              const VerticalDivider(
+                                endIndent: 17,
+                                width: 30,
+                                color: Color.fromARGB(92, 0, 0, 0),
+                                thickness: 2,
+                              ),
                               GestureDetector(
-                                  onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RoomScreen(),),);
-                              },
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => RoomScreen(),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   height: 80,
                                   width: 130,

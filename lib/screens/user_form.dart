@@ -1,4 +1,6 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -21,11 +23,19 @@ class UserForm extends StatefulWidget {
 }
 
 class _UserFormState extends State<UserForm> {
+  final DateTime now = DateTime.now();
+  final DateFormat formatter = DateFormat('dd-MM-yyyy');
+
+  final format = DateFormat('dd/MM/yyyy');
   late String _name;
   late String _email;
   late String _phoneNumber;
   late String _course;
-  late String _YOS;
+  late String _yos;
+  late String _roll;
+  // late String _date;
+
+  var _date;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -38,30 +48,42 @@ class _UserFormState extends State<UserForm> {
   ];
 
   List YearofStudy = [
-    {"title": "I", "value": "1"},
-    {"title": "II", "value": "2"},
-    {"title": "III", "value": "3"},
-    {"title": "IV", "value": "4"},
+    {"title": "FY", "value": "1"},
+    {"title": "SY", "value": "2"},
+    {"title": "TY", "value": "3"},
+    {"title": "FE", "value": "4"},
     // {"title": "ENTC", "value": "Entc"},
   ];
 
   String defaultValue = "";
 
+  // static DateTime now;
+
   Widget _buildName() {
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Name : ',
-        labelStyle: TextStyle(color: Colors.black),
+        labelStyle: const TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: const Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
         fillColor: Color.fromARGB(143, 253, 251, 251),
         filled: true,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
       ),
@@ -78,21 +100,119 @@ class _UserFormState extends State<UserForm> {
     );
   }
 
+  Widget _Date() {
+    return Container(
+      width: 200,
+      child: DateTimeField(
+        format: format,
+        decoration: InputDecoration(
+          labelText: "Select Date:",
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          fillColor: Color.fromARGB(143, 253, 251, 251),
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          suffixIcon: Icon(
+            Icons.calendar_today_rounded,
+            color: Color.fromARGB(255, 134, 123, 123),
+          ),
+        ),
+        onShowPicker: (context, currentValue) async {
+          _date = await showDatePicker(
+              context: context,
+              initialDate: currentValue ?? DateTime.now(),
+              firstDate: DateTime(1990),
+              lastDate: DateTime(2100));
+          return _date;
+        },
+      ),
+    );
+  }
+
+  Widget _builRoll() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Roll No : ',
+        labelStyle: TextStyle(color: Colors.black),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        fillColor: Color.fromARGB(143, 253, 251, 251),
+        filled: true,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Roll No. is required';
+        }
+
+        return null;
+      },
+      onSaved: (value) {
+        _roll = value!;
+      },
+    );
+  }
+
   Widget _buildEmail() {
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Email : ',
         labelStyle: TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: const Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
         fillColor: Color.fromARGB(143, 253, 251, 251),
         filled: true,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
       ),
@@ -121,15 +241,25 @@ class _UserFormState extends State<UserForm> {
         labelText: 'Phone Number : ',
         labelStyle: TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: const Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
         fillColor: Color.fromARGB(143, 253, 251, 251),
         filled: true,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
           borderRadius: BorderRadius.circular(16),
         ),
       ),
@@ -149,20 +279,30 @@ class _UserFormState extends State<UserForm> {
 
   Widget _courseSelect() {
     return Container(
-      width: 130,
+      width: 150,
       child: DropdownButtonFormField(
           decoration: InputDecoration(
             labelStyle: TextStyle(color: Colors.black),
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderSide: const BorderSide(
+                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
               borderRadius: BorderRadius.circular(16),
             ),
             fillColor: Color.fromARGB(143, 253, 251, 251),
             filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
             focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
               borderRadius: BorderRadius.circular(16),
             ),
           ),
@@ -178,26 +318,38 @@ class _UserFormState extends State<UserForm> {
           ],
           onChanged: (value) {
             setState(() => _course = value.toString());
+            validator:
+            (value) => value == null ? 'field required' : null;
           }),
     );
   }
 
   Widget _yoStudy() {
     return Container(
-      width: 130,
+      width: 158,
       child: DropdownButtonFormField(
           decoration: InputDecoration(
             labelStyle: TextStyle(color: Colors.black),
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderSide: const BorderSide(
+                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
               borderRadius: BorderRadius.circular(16),
             ),
             fillColor: Color.fromARGB(143, 253, 251, 251),
             filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
             focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
               borderRadius: BorderRadius.circular(16),
             ),
           ),
@@ -205,14 +357,14 @@ class _UserFormState extends State<UserForm> {
           //isExpanded: true,
 
           items: [
-            const DropdownMenuItem(child: Text("Course"), value: ""),
+            const DropdownMenuItem(child: Text("Year of Study"), value: ""),
             ...YearofStudy.map<DropdownMenuItem<String>>((e) {
               return DropdownMenuItem(
                   child: Text(e['title']), value: e['value']);
             }).toList(),
           ],
           onChanged: (value) {
-            setState(() => _YOS = value.toString());
+            setState(() => _yos = value.toString());
           }),
     );
   }
@@ -238,23 +390,40 @@ class _UserFormState extends State<UserForm> {
               children: [
                 _buildName(),
                 SizedBox(height: 20),
+                _builRoll(),
+                SizedBox(height: 20),
                 _buildEmail(),
                 SizedBox(height: 20),
                 _buildPhoneNumber(),
                 SizedBox(height: 20),
                 Row(
                   children: [
-                    Column(
-                      children: [
-                        _courseSelect(),
-                      ],
-                    ),
-                    SizedBox(width: 10),
+                    _courseSelect(),
+                    SizedBox(width: 30),
+                    _yoStudy(),
                   ],
                 ),
-                SizedBox(height: 100),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.only(left: 1),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'DOB',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Container(
+                          margin: const EdgeInsets.all(10), child: _Date()),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 100),
                 RaisedButton(
-                  child: Text(
+                  child: const Text(
                     'Submit',
                     style: TextStyle(color: Colors.blue, fontSize: 16),
                   ),
@@ -269,6 +438,8 @@ class _UserFormState extends State<UserForm> {
                     print(_email);
                     print(_phoneNumber);
                     print(_course);
+                    String s = _date.toString();
+                    print(s);
 
                     //Send to API
                   },
@@ -281,22 +452,3 @@ class _UserFormState extends State<UserForm> {
     );
   }
 }
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//

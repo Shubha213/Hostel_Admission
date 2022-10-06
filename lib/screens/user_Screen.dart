@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hostel_app/screens/user_form.dart';
-import 'package:hostel_app/screens/user_room.dart';
+import 'package:sk_m/screens/user_form.dart';
+import 'package:sk_m/screens/user_room.dart';
 
 class Userscreen extends StatelessWidget {
   const Userscreen({Key? key}) : super(key: key);

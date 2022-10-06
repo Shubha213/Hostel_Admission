@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:hostel_app/screens/admin_screen.dart';
+import 'package:sk_m/screens/admin_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -42,9 +42,10 @@ class DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Color(0xFF90294A),
-            title: const Text("Details")),
+          centerTitle: true,
+          backgroundColor: Color(0xFF90294A),
+          title: const Text('Room Allot'),
+        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 40, left: 40),
           child: Container(
@@ -66,33 +67,20 @@ class DetailScreenState extends State<DetailScreen> {
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30),
-                        child: DropdownButton(
-                          value: dropdownvalue1,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: year.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items),
-                            );
-                          }).toList(),
-                          underline: Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    width: 1.0, style: BorderStyle.solid),
-                                // borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                            ),
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue1 = newValue!;
-                            });
-                          },
-                        ),
+                      DropdownButton(
+                        value: dropdownvalue1,
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: year.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue1 = newValue!;
+                          });
+                        },
                       ),
                     ],
                   )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:hostel_app/screens/admin_screen.dart';
+import 'package:sk_m/screens/admin_screen.dart';
 
 class MeritList extends StatefulWidget {
   const MeritList({Key? key}) : super(key: key);

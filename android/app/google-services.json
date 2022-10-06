@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "337657584930",
+    "project_id": "gcek-hostel-admission",
+    "storage_bucket": "gcek-hostel-admission.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337657584930:android:2ad6910533a008a68ad97b",
+        "android_client_info": {
+          "package_name": "com.hostel_App.sk_m"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337657584930-a9c52tc8ff93sc463m66kr9o5u5pii0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW-bMCuYnAcX8551MHXkCcXSQcjFdo7LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337657584930-a9c52tc8ff93sc463m66kr9o5u5pii0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
