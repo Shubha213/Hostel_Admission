@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 Image logoWidget(String imageName) {
   return Image.asset(
@@ -9,6 +14,23 @@ Image logoWidget(String imageName) {
     color: Colors.white,
   );
 }
+
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+// Widget Field(String changedValue, String label, bool isTextObscured) {
+//   return TextFormField(
+//     decoration: InputDecoration(labelText: label),
+//     validator: checkFieldEmpty,
+//   );
+// }
+
+// String? checkFieldEmpty(String? fieldContent) {
+//   //<-- add String? as a return type
+//   if (fieldContent!.isEmpty) {
+//     return 'Ce champ est obligatoire.';
+//   }
+//   return null;
+// }
 
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
@@ -64,5 +86,47 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
     ),
+  );
+}
+
+TextFormField reusableInput(
+  String text,
+  TextEditingController controller,
+) {
+  return TextFormField(
+    controller: controller,
+    decoration: InputDecoration(
+      labelText: text,
+      labelStyle: const TextStyle(color: Colors.black),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      fillColor: Color.fromARGB(143, 253, 251, 251),
+      filled: true,
+      errorBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+    ),
+    validator: (String? value) {
+      if (value!.isEmpty) {
+        return text;
+      }
+
+      return null;
+    },
   );
 }

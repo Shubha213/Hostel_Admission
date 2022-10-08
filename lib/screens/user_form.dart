@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sk_m/reusable_widgets/reusable_widget.dart';
+import 'package:sk_m/screens/user_Screen.dart';
 
 // class UserForm extends StatefulWidget {
 //   const UserForm({Key? key}) : super(key: key);
@@ -27,12 +30,20 @@ class _UserFormState extends State<UserForm> {
   final DateFormat formatter = DateFormat('dd-MM-yyyy');
 
   final format = DateFormat('dd/MM/yyyy');
-  late String _name;
-  late String _email;
-  late String _phoneNumber;
-  late String _course;
-  late String _yos;
-  late String _roll;
+  TextEditingController _name = TextEditingController();
+  TextEditingController tt = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _phoneNumber = TextEditingController();
+  // TextEditingController _course = TextEditingController();
+  // TextEditingController _yos = TextEditingController();
+  TextEditingController _roll = TextEditingController();
+  // late String _name = " ";
+  // late String _email = " ";
+  // late String _phoneNumber = " ";
+  late String _course = "";
+  late String _yos = "";
+  // late String _roll = " ";
+
   // late String _date;
 
   var _date;
@@ -61,6 +72,7 @@ class _UserFormState extends State<UserForm> {
 
   Widget _buildName() {
     return TextFormField(
+      controller: _name,
       decoration: InputDecoration(
         labelText: 'Name : ',
         labelStyle: const TextStyle(color: Colors.black),
@@ -94,9 +106,9 @@ class _UserFormState extends State<UserForm> {
 
         return null;
       },
-      onSaved: (value) {
-        _name = value!;
-      },
+      // onSaved: (aa) {
+      //   _name = aa.toString();
+      // },
     );
   }
 
@@ -149,6 +161,7 @@ class _UserFormState extends State<UserForm> {
 
   Widget _builRoll() {
     return TextFormField(
+      controller: _roll,
       decoration: InputDecoration(
         labelText: 'Roll No : ',
         labelStyle: TextStyle(color: Colors.black),
@@ -182,14 +195,15 @@ class _UserFormState extends State<UserForm> {
 
         return null;
       },
-      onSaved: (value) {
-        _roll = value!;
-      },
+      // onSaved: (value) {
+      //   _roll = value!;
+      // },
     );
   }
 
   Widget _buildEmail() {
     return TextFormField(
+      controller: _email,
       decoration: InputDecoration(
         labelText: 'Email : ',
         labelStyle: TextStyle(color: Colors.black),
@@ -229,14 +243,15 @@ class _UserFormState extends State<UserForm> {
 
         return null;
       },
-      onSaved: (value) {
-        _email = value!;
-      },
+      // onSaved: (value) {
+      //   _email = value!;
+      // },
     );
   }
 
   Widget _buildPhoneNumber() {
     return TextFormField(
+      controller: _phoneNumber,
       decoration: InputDecoration(
         labelText: 'Phone Number : ',
         labelStyle: TextStyle(color: Colors.black),
@@ -271,9 +286,9 @@ class _UserFormState extends State<UserForm> {
 
         return null;
       },
-      onSaved: (value) {
-        _phoneNumber = value!;
-      },
+      // onSaved: (value) {
+      //   _phoneNumber = value!;
+      // },
     );
   }
 
@@ -421,7 +436,12 @@ class _UserFormState extends State<UserForm> {
                     ],
                   ),
                 ),
+                reusableInput('text', tt),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 const SizedBox(height: 100),
+
                 RaisedButton(
                   child: const Text(
                     'Submit',
@@ -431,15 +451,25 @@ class _UserFormState extends State<UserForm> {
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
-
-                    _formKey.currentState!.save();
-
-                    print(_name);
-                    print(_email);
-                    print(_phoneNumber);
-                    print(_course);
-                    String s = _date.toString();
-                    print(s);
+                    FirebaseFirestore.instance
+                        .collection("hosteller info")
+                        .add({
+                      "Name": _name.text,
+                      "Roll_no": _roll.text,
+                      "Email": _email.text,
+                      "Phone": _phoneNumber.text,
+                      "Course": _course.toString(),
+                      "YearofStudy": _yos.toString(),
+                      "DOB": _date.toString(),
+                    }).then((value) {
+                      print("Created New Account");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Userscreen()));
+                    }).onError(((error, stackTrace) {
+                      print("Error${error.toString()}");
+                    }));
 
                     //Send to API
                   },
