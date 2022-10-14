@@ -36,7 +36,45 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const SignInScreen(),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              if (_auth.currentUser!.uid == 'Nh2W1sU1MuRNDbEFnwcZIvjePXH2') {
+                return AdminScreen();
+              } else {
+                return Userscreen();
+              }
+            } else {
+              return SignInScreen();
+            }
+          default:
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+        }
+      },
     );
   }
 }

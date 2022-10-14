@@ -11,7 +11,7 @@ Image logoWidget(String imageName) {
     fit: BoxFit.fitWidth,
     width: 240,
     height: 240,
-    color: Colors.white,
+    // color: Colors.white,
   );
 }
 
@@ -128,5 +128,52 @@ TextFormField reusableInput(
 
       return null;
     },
+  );
+}
+
+TextFormField buildtableno(
+  String text,
+  TextEditingController controller,
+) {
+  return TextFormField(
+    controller: controller,
+    decoration: InputDecoration(
+      isDense: true,
+      contentPadding: EdgeInsets.fromLTRB(20, 30, 10, 0),
+      labelText: text,
+      labelStyle: TextStyle(color: Colors.black),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+            color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      fillColor: Color.fromARGB(143, 253, 251, 251),
+      filled: true,
+      errorBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide:
+            const BorderSide(color: Color.fromARGB(173, 22, 22, 22), width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+    validator: (value) {
+      if (value!.isEmpty) {
+        return text;
+      }
+
+      return null;
+    },
+    // onSaved: (value) {
+    //   _roll = value!;
+    // },
   );
 }

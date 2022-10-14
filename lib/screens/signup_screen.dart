@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sk_m/reusable_widgets/reusable_widget.dart';
@@ -16,6 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,19 +63,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text);
+                  FirebaseFirestore.instance.collection("Users").add({
+                    "UserName": _userNameTextController.text,
+                    "Email": _emailTextController.text,
+                  }).then((value) {
                     print("Created New Account");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SignInScreen()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  }).onError(((error, stackTrace) {
+                    print("Error${error.toString()}");
+                  }));
                 })
               ],
             ),

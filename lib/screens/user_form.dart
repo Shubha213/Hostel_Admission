@@ -1,22 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sk_m/reusable_widgets/reusable_widget.dart';
 import 'package:sk_m/screens/user_Screen.dart';
-
-// class UserForm extends StatefulWidget {
-//   const UserForm({Key? key}) : super(key: key);
-
-//   @override
-//   State<UserForm> createState() => _
-// class FormScreen extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//   return _UserFormState();
-// }
 
 class UserForm extends StatefulWidget {
   const UserForm({Key? key}) : super(key: key);
@@ -31,9 +21,13 @@ class _UserFormState extends State<UserForm> {
 
   final format = DateFormat('dd/MM/yyyy');
   TextEditingController _name = TextEditingController();
-  TextEditingController tt = TextEditingController();
+  TextEditingController _cgpa = TextEditingController();
+  TextEditingController _parentname = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _phoneNumber = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _contactparent = TextEditingController();
+
   // TextEditingController _course = TextEditingController();
   // TextEditingController _yos = TextEditingController();
   TextEditingController _roll = TextEditingController();
@@ -42,6 +36,8 @@ class _UserFormState extends State<UserForm> {
   // late String _phoneNumber = " ";
   late String _course = "";
   late String _yos = "";
+  late String _takecategory = "";
+  late String _take_gender = "";
   // late String _roll = " ";
 
   // late String _date;
@@ -50,7 +46,7 @@ class _UserFormState extends State<UserForm> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  List complaintTypeList = [
+  List Courses = [
     {"title": "IT", "value": "IT"},
     {"title": "CIVIL", "value": "Civil"},
     {"title": "ELECT", "value": "Elect"},
@@ -59,11 +55,24 @@ class _UserFormState extends State<UserForm> {
   ];
 
   List YearofStudy = [
-    {"title": "FY", "value": "1"},
-    {"title": "SY", "value": "2"},
-    {"title": "TY", "value": "3"},
-    {"title": "FE", "value": "4"},
+    {"title": "FY", "value": "FY"},
+    {"title": "SY", "value": "SY"},
+    {"title": "TY", "value": "TY"},
+    {"title": "B.Tech", "value": "B.Tech"},
     // {"title": "ENTC", "value": "Entc"},
+  ];
+
+  List Category = [
+    {"title": "OPEN", "value": "Open"},
+    {"title": "OBC", "value": "OBC"},
+    {"title": "SC", "value": "SC"},
+    {"title": "ST", "value": "ST"},
+    {"title": "NT", "value": "NT"},
+  ];
+
+  List _gender = [
+    {"title": "MALE", "value": "MALE"},
+    {"title": "FEMALE", "value": "FEMALE"},
   ];
 
   String defaultValue = "";
@@ -114,11 +123,11 @@ class _UserFormState extends State<UserForm> {
 
   Widget _Date() {
     return Container(
-      width: 200,
+      width: 120,
       child: DateTimeField(
         format: format,
         decoration: InputDecoration(
-          labelText: "Select Date:",
+          labelText: "Select",
           labelStyle: TextStyle(color: Colors.black),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(
@@ -326,13 +335,61 @@ class _UserFormState extends State<UserForm> {
 
           items: [
             const DropdownMenuItem(child: Text("Course"), value: ""),
-            ...complaintTypeList.map<DropdownMenuItem<String>>((e) {
+            ...Courses.map<DropdownMenuItem<String>>((e) {
               return DropdownMenuItem(
                   child: Text(e['title']), value: e['value']);
             }).toList(),
           ],
           onChanged: (value) {
             setState(() => _course = value.toString());
+            validator:
+            (value) => value == null ? 'field required' : null;
+          }),
+    );
+  }
+
+  Widget __genderSelect() {
+    return Container(
+      width: 120,
+      height: 60,
+      child: DropdownButtonFormField(
+          decoration: InputDecoration(
+            labelStyle: TextStyle(color: Colors.black),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fillColor: Color.fromARGB(143, 253, 251, 251),
+            filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          value: defaultValue,
+          //isExpanded: true,
+
+          items: [
+            const DropdownMenuItem(child: Text("_gender"), value: ""),
+            ..._gender.map<DropdownMenuItem<String>>((e) {
+              return DropdownMenuItem(
+                  child: Text(e['title']), value: e['value']);
+            }).toList(),
+          ],
+          onChanged: (value) {
+            setState(() => _take_gender = value.toString());
             validator:
             (value) => value == null ? 'field required' : null;
           }),
@@ -384,6 +441,53 @@ class _UserFormState extends State<UserForm> {
     );
   }
 
+  Widget _studcategory() {
+    return Container(
+      width: 400,
+      child: DropdownButtonFormField(
+          decoration: InputDecoration(
+            labelStyle: TextStyle(color: Colors.black),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fillColor: Color.fromARGB(143, 253, 251, 251),
+            filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          value: defaultValue,
+          //isExpanded: true,
+
+          items: [
+            const DropdownMenuItem(child: Text("Category"), value: ""),
+            ...Category.map<DropdownMenuItem<String>>((e) {
+              return DropdownMenuItem(
+                  child: Text(e['title']), value: e['value']);
+            }).toList(),
+          ],
+          onChanged: (value) {
+            setState(() => _takecategory = value.toString());
+            validator:
+            (value) => value == null ? 'field required' : null;
+          }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -423,36 +527,53 @@ class _UserFormState extends State<UserForm> {
                   padding: EdgeInsets.only(left: 1),
                   child: Row(
                     children: [
-                      const Text(
-                        'DOB',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
+                      Column(
+                        children: [
+                          const Text(
+                            'DOB',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(width: 10),
                       Container(
                           margin: const EdgeInsets.all(10), child: _Date()),
+                      __genderSelect(),
                     ],
                   ),
                 ),
-                reusableInput('text', tt),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                const SizedBox(height: 100),
-
-                RaisedButton(
+                // SizedBox(height: 20),
+                // __genderSelect(),
+                SizedBox(height: 20),
+                reusableInput('Last Year CGPA', _cgpa),
+                SizedBox(height: 20),
+                _studcategory(),
+                SizedBox(height: 20),
+                reusableInput('Name of Parent/Gardian', _parentname),
+                SizedBox(height: 20),
+                reusableInput('Address', _address),
+                SizedBox(height: 20),
+                reusableInput('Contact of Parent/Gardian', _contactparent),
+                SizedBox(height: 20),
+                ElevatedButton(
                   child: const Text(
                     'Submit',
-                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 2, 2, 2), fontSize: 16),
                   ),
+                  // style: ButtonStyle(
+                  //     backgroundColor: Color(0xFF90294A),
+                  //   ),
                   onPressed: () {
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
+
                     FirebaseFirestore.instance
-                        .collection("hosteller info")
+                        .collection("Hostel Applicants")
                         .add({
                       "Name": _name.text,
                       "Roll_no": _roll.text,
@@ -461,6 +582,12 @@ class _UserFormState extends State<UserForm> {
                       "Course": _course.toString(),
                       "YearofStudy": _yos.toString(),
                       "DOB": _date.toString(),
+                      "last year CGPA": double.parse(_cgpa.text),
+                      "Category": _takecategory.toString(),
+                      "Parent Name": _parentname.text,
+                      "Address": _address.text,
+                      "Parent Contact": _contactparent.text,
+                      "Gender": _take_gender.toString(),
                     }).then((value) {
                       print("Created New Account");
                       Navigator.push(

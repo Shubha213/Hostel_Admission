@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sk_m/reusable_widgets/reusable_widget.dart';
+import 'package:sk_m/screens/admin_screen.dart';
 import 'package:sk_m/screens/reset_password.dart';
 import 'package:sk_m/screens/signup_screen.dart';
+import 'package:sk_m/screens/user_Screen.dart';
 import 'package:sk_m/tempscreen/temp.dart';
 import 'package:sk_m/utils/color_utils.dart';
 
@@ -18,8 +20,10 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
+  final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -57,8 +61,20 @@ class _SignInScreenState extends State<SignInScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => temp()));
+                    if (_auth.currentUser!.uid ==
+                            'Nh2W1sU1MuRNDbEFnwcZIvjePXH2' ||
+                        _auth.currentUser!.uid ==
+                            'y1bjEnMbP7MCwIaPTzHdrG4LVDN2')
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AdminScreen()));
+                    else
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Userscreen()));
+                    ;
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
