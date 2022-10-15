@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 Image logoWidget(String imageName) {
   return Image.asset(
@@ -16,21 +17,6 @@ Image logoWidget(String imageName) {
 }
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-// Widget Field(String changedValue, String label, bool isTextObscured) {
-//   return TextFormField(
-//     decoration: InputDecoration(labelText: label),
-//     validator: checkFieldEmpty,
-//   );
-// }
-
-// String? checkFieldEmpty(String? fieldContent) {
-//   //<-- add String? as a return type
-//   if (fieldContent!.isEmpty) {
-//     return 'Ce champ est obligatoire.';
-//   }
-//   return null;
-// }
 
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
@@ -172,8 +158,60 @@ TextFormField buildtableno(
 
       return null;
     },
-    // onSaved: (value) {
-    //   _roll = value!;
-    // },
+  );
+}
+
+Container _studcategory(
+    List Category, String _takecategory, String defaultValue) {
+  _takecategory = "";
+  defaultValue = "";
+  return Container(
+    width: 400,
+    child: DropdownButtonFormField(
+      decoration: InputDecoration(
+        labelStyle: TextStyle(color: Colors.black),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        fillColor: Color.fromARGB(143, 253, 251, 251),
+        filled: true,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+              color: Color.fromARGB(173, 22, 22, 22), width: 2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+      value: defaultValue,
+      //isExpanded: true,
+
+      items: [
+        const DropdownMenuItem(child: Text("Category"), value: ""),
+        ...Category.map<DropdownMenuItem<String>>((e) {
+          return DropdownMenuItem(child: Text(e['title']), value: e['value']);
+        }).toList(),
+      ],
+      // onChanged: (value) {
+      //   setState(() => _takecategory = value.toString());
+      // },
+      validator: (String? value) {
+        if (value!.isEmpty) {
+          return 'field is required';
+        }
+        return null;
+      },
+      onChanged: (String? value) {},
+    ),
   );
 }

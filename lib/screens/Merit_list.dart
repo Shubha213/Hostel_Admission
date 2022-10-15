@@ -54,7 +54,8 @@ class _MeritListState extends State<MeritList> {
               event.docs.map((doc) => ApplicantNote.fromSnapshot(doc)).where(
                     (element) =>
                         (element.course == dropdownvalue2) &&
-                        (element.yearOfStudy == dropdownvalue1),
+                        (element.yearOfStudy == dropdownvalue1) &&
+                        (element.gender == dropdownvalue3),
                   ),
         );
   }

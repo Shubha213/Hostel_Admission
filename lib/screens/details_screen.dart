@@ -14,9 +14,9 @@ class DetailScreen extends StatefulWidget {
 }
 
 class DetailScreenState extends State<DetailScreen> {
-  String dropdownvalue1 = 'FY';
-  String dropdownvalue2 = 'IT';
-  String dropdownvalue3 = 'MALE';
+  String dropdownvalue1 = 'YEAR';
+  String dropdownvalue2 = 'BRANCH';
+  String dropdownvalue3 = 'GENDER';
 
   var year = [
     'YEAR',
@@ -46,14 +46,12 @@ class DetailScreenState extends State<DetailScreen> {
         .collection("Hostel Applicants")
         .snapshots()
         .map(
-          (event) => event.docs
-              .map((doc) => ApplicantNote.fromSnapshot(doc))
-              .where(
-                  (element) =>
-                      (element.course == dropdownvalue2) &&
-                      (element.yearOfStudy == dropdownvalue1)
-                  // &&
-                  // (element.gender == dropdownvalue3),
+          (event) =>
+              event.docs.map((doc) => ApplicantNote.fromSnapshot(doc)).where(
+                    (element) =>
+                        (element.course == dropdownvalue2) &&
+                        (element.yearOfStudy == dropdownvalue1) &&
+                        (element.gender == dropdownvalue3),
                   ),
         );
   }

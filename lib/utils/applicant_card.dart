@@ -8,11 +8,12 @@ class ApplicantCard extends StatelessWidget {
   final double cgpa;
   final String yos;
 
-  ApplicantCard(
-      {required this.cgpa,
-      required this.rollNo,
-      required this.name,
-      required this.yos});
+  ApplicantCard({
+    required this.cgpa,
+    required this.rollNo,
+    required this.name,
+    required this.yos,
+  });
   @override
   Widget build(BuildContext context) {
     return ListTile(

@@ -125,46 +125,45 @@ class _UserFormState extends State<UserForm> {
     return Container(
       width: 120,
       child: DateTimeField(
-        format: format,
-        decoration: InputDecoration(
-          labelText: "Select",
-          labelStyle: TextStyle(color: Colors.black),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
-            borderRadius: BorderRadius.circular(16),
+          format: format,
+          decoration: InputDecoration(
+            labelText: "Select",
+            labelStyle: TextStyle(color: Colors.black),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fillColor: Color.fromARGB(143, 253, 251, 251),
+            filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            suffixIcon: Icon(
+              Icons.calendar_today_rounded,
+              color: Color.fromARGB(255, 134, 123, 123),
+            ),
           ),
-          fillColor: Color.fromARGB(143, 253, 251, 251),
-          filled: true,
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: Color.fromARGB(173, 22, 22, 22), width: 2),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: Color.fromARGB(173, 22, 22, 22), width: 2),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: Color.fromARGB(173, 22, 22, 22), width: 2),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          suffixIcon: Icon(
-            Icons.calendar_today_rounded,
-            color: Color.fromARGB(255, 134, 123, 123),
-          ),
-        ),
-        onShowPicker: (context, currentValue) async {
-          _date = await showDatePicker(
-              context: context,
-              initialDate: currentValue ?? DateTime.now(),
-              firstDate: DateTime(1990),
-              lastDate: DateTime(2100));
-          return _date;
-        },
-      ),
+          onShowPicker: (context, currentValue) async {
+            _date = await showDatePicker(
+                context: context,
+                initialDate: currentValue ?? DateTime.now(),
+                firstDate: DateTime(1990),
+                lastDate: DateTime(2100));
+            return _date;
+          }),
     );
   }
 
@@ -197,6 +196,7 @@ class _UserFormState extends State<UserForm> {
           borderRadius: BorderRadius.circular(16),
         ),
       ),
+      keyboardType: TextInputType.phone,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Roll No. is required';
@@ -305,94 +305,102 @@ class _UserFormState extends State<UserForm> {
     return Container(
       width: 150,
       child: DropdownButtonFormField(
-          decoration: InputDecoration(
-            labelStyle: TextStyle(color: Colors.black),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            fillColor: Color.fromARGB(143, 253, 251, 251),
-            filled: true,
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
           ),
-          value: defaultValue,
-          //isExpanded: true,
+          fillColor: Color.fromARGB(143, 253, 251, 251),
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        value: defaultValue,
+        //isExpanded: true,
 
-          items: [
-            const DropdownMenuItem(child: Text("Course"), value: ""),
-            ...Courses.map<DropdownMenuItem<String>>((e) {
-              return DropdownMenuItem(
-                  child: Text(e['title']), value: e['value']);
-            }).toList(),
-          ],
-          onChanged: (value) {
-            setState(() => _course = value.toString());
-            validator:
-            (value) => value == null ? 'field required' : null;
-          }),
+        items: [
+          const DropdownMenuItem(child: Text("Course"), value: ""),
+          ...Courses.map<DropdownMenuItem<String>>((e) {
+            return DropdownMenuItem(child: Text(e['title']), value: e['value']);
+          }).toList(),
+        ],
+        onChanged: (value) {
+          setState(() => _course = value.toString());
+        },
+        validator: (String? value) {
+          if (value!.isEmpty) {
+            return 'field is required';
+          }
+          return null;
+        },
+      ),
     );
   }
 
   Widget __genderSelect() {
     return Container(
       width: 120,
-      height: 60,
+      height: 100,
       child: DropdownButtonFormField(
-          decoration: InputDecoration(
-            labelStyle: TextStyle(color: Colors.black),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            fillColor: Color.fromARGB(143, 253, 251, 251),
-            filled: true,
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
           ),
-          value: defaultValue,
-          //isExpanded: true,
+          fillColor: Color.fromARGB(143, 253, 251, 251),
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        value: defaultValue,
+        //isExpanded: true,
 
-          items: [
-            const DropdownMenuItem(child: Text("_gender"), value: ""),
-            ..._gender.map<DropdownMenuItem<String>>((e) {
-              return DropdownMenuItem(
-                  child: Text(e['title']), value: e['value']);
-            }).toList(),
-          ],
-          onChanged: (value) {
-            setState(() => _take_gender = value.toString());
-            validator:
-            (value) => value == null ? 'field required' : null;
-          }),
+        items: [
+          const DropdownMenuItem(child: Text("Gender"), value: ""),
+          ..._gender.map<DropdownMenuItem<String>>((e) {
+            return DropdownMenuItem(child: Text(e['title']), value: e['value']);
+          }).toList(),
+        ],
+        onChanged: (value) {
+          setState(() => _take_gender = value.toString());
+        },
+        validator: (String? value) {
+          if (value!.isEmpty) {
+            return 'field is required';
+          }
+          return null;
+        },
+      ),
     );
   }
 
@@ -400,44 +408,50 @@ class _UserFormState extends State<UserForm> {
     return Container(
       width: 158,
       child: DropdownButtonFormField(
-          decoration: InputDecoration(
-            labelStyle: TextStyle(color: Colors.black),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            fillColor: Color.fromARGB(143, 253, 251, 251),
-            filled: true,
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
           ),
-          value: defaultValue,
-          //isExpanded: true,
+          fillColor: Color.fromARGB(143, 253, 251, 251),
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        value: defaultValue,
+        //isExpanded: true,
 
-          items: [
-            const DropdownMenuItem(child: Text("Year of Study"), value: ""),
-            ...YearofStudy.map<DropdownMenuItem<String>>((e) {
-              return DropdownMenuItem(
-                  child: Text(e['title']), value: e['value']);
-            }).toList(),
-          ],
-          onChanged: (value) {
-            setState(() => _yos = value.toString());
-          }),
+        items: [
+          const DropdownMenuItem(child: Text("Year of Study"), value: ""),
+          ...YearofStudy.map<DropdownMenuItem<String>>((e) {
+            return DropdownMenuItem(child: Text(e['title']), value: e['value']);
+          }).toList(),
+        ],
+        onChanged: (value) {
+          setState(() => _yos = value.toString());
+        },
+        validator: (String? value) {
+          if (value!.isEmpty) {
+            return 'field is required';
+          }
+          return null;
+        },
+      ),
     );
   }
 
@@ -445,46 +459,50 @@ class _UserFormState extends State<UserForm> {
     return Container(
       width: 400,
       child: DropdownButtonFormField(
-          decoration: InputDecoration(
-            labelStyle: TextStyle(color: Colors.black),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: const Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            fillColor: Color.fromARGB(143, 253, 251, 251),
-            filled: true,
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Color.fromARGB(173, 22, 22, 22), width: 2),
-              borderRadius: BorderRadius.circular(16),
-            ),
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: const Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
           ),
-          value: defaultValue,
-          //isExpanded: true,
+          fillColor: Color.fromARGB(143, 253, 251, 251),
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(173, 22, 22, 22), width: 2),
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        value: defaultValue,
+        //isExpanded: true,
 
-          items: [
-            const DropdownMenuItem(child: Text("Category"), value: ""),
-            ...Category.map<DropdownMenuItem<String>>((e) {
-              return DropdownMenuItem(
-                  child: Text(e['title']), value: e['value']);
-            }).toList(),
-          ],
-          onChanged: (value) {
-            setState(() => _takecategory = value.toString());
-            validator:
-            (value) => value == null ? 'field required' : null;
-          }),
+        items: [
+          const DropdownMenuItem(child: Text("Category"), value: ""),
+          ...Category.map<DropdownMenuItem<String>>((e) {
+            return DropdownMenuItem(child: Text(e['title']), value: e['value']);
+          }).toList(),
+        ],
+        onChanged: (value) {
+          setState(() => _takecategory = value.toString());
+        },
+        validator: (String? value) {
+          if (value!.isEmpty) {
+            return 'field is required';
+          }
+          return null;
+        },
+      ),
     );
   }
 

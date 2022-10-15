@@ -10,7 +10,7 @@ class ApplicantNote {
   final String rollNo;
   final String yearOfStudy;
   final double cgpa;
-  // final String gender;
+  final String gender;
 
   ApplicantNote({
     required this.course,
@@ -21,7 +21,7 @@ class ApplicantNote {
     required this.rollNo,
     required this.yearOfStudy,
     required this.cgpa,
-    // required this.gender,
+    required this.gender,
   });
 
   ApplicantNote.fromSnapshot(
@@ -33,6 +33,6 @@ class ApplicantNote {
         phoneNumber = snapshot.data()["Phone"] as String,
         rollNo = snapshot.data()["Roll_no"] as String,
         cgpa = snapshot.data()["last year CGPA"] as double,
-        // gender = snapshot.data()["Gender"] as String,
+        gender = snapshot.data()["Gender"] as String,
         yearOfStudy = snapshot.data()["YearofStudy"] as String;
 }
