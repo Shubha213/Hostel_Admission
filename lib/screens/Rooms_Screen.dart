@@ -48,7 +48,7 @@ class _RoomScreenState extends State<RoomScreen> {
         body: Padding(
           padding: const EdgeInsets.only(top: 40, left: 40),
           child: Container(
-            height: 250,
+            height: 150,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -64,24 +64,42 @@ class _RoomScreenState extends State<RoomScreen> {
                   const SizedBox(
                     width: 30,
                   ),
-                  Column(
-                    children: [
-                      DropdownButton(
-                        value: dropdownvalue1,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: year.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue1 = newValue!;
-                          });
-                        },
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color.fromARGB(218, 16, 16, 17),
+                                  width: 2,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton(
+                              value: dropdownvalue1,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: year.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              underline: DropdownButtonHideUnderline(
+                                  child: Container()),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownvalue1 = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ]),
                 Row(children: [
@@ -96,24 +114,42 @@ class _RoomScreenState extends State<RoomScreen> {
                   const SizedBox(
                     width: 30,
                   ),
-                  Column(
-                    children: [
-                      DropdownButton(
-                        value: dropdownvalue2,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: branch.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue2 = newValue!;
-                          });
-                        },
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 7),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color.fromARGB(218, 16, 16, 17),
+                                  width: 2,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton(
+                              value: dropdownvalue2,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: branch.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              underline: DropdownButtonHideUnderline(
+                                  child: Container()),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownvalue2 = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ]),
                 Row(children: [
@@ -128,52 +164,44 @@ class _RoomScreenState extends State<RoomScreen> {
                   const SizedBox(
                     width: 30,
                   ),
-                  Column(
-                    children: [
-                      DropdownButton(
-                        value: dropdownvalue3,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: gn.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue3 = newValue!;
-                          });
-                        },
-                      ),
-                    ],
-                  )
-                ]),
-                Row(
-                  children: [
-                    Column(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 50),
-                          child: Container(
-                            margin: EdgeInsets.all(25),
-                            child: FlatButton(
-                              child: Text(
-                                'Apply Changes',
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                              color: Color(0xFF90294A),
-                              textColor: Colors.white,
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => AdminScreen()));
+                        Container(
+                          height: 40,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color.fromARGB(218, 16, 16, 17),
+                                  width: 2,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton(
+                              value: dropdownvalue3,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: gn.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              underline: DropdownButtonHideUnderline(
+                                  child: Container()),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownvalue3 = newValue!;
+                                });
                               },
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  )
+                ]),
               ],
             ),
           ),
